@@ -11,7 +11,7 @@
   :profiles {:provided {:dependencies [[org.clojure/clojure "1.5.1"]]}
              :codec-simple {:dependencies [[cambium/cambium.codec-simple "0.9.0"]]}
              :nested-test  {:test-paths ["nested-test"]}
-             :dev {:dependencies [[org.clojure/tools.nrepl "0.2.10"]]}
+             :dev {:dependencies [[org.clojure/tools.nrepl "0.2.12"]]}
              :logback {:dependencies [[ch.qos.logback/logback-classic "1.1.7"]
                                       [ch.qos.logback/logback-core    "1.1.7"]]}
              :log4j12 {:dependencies [[org.slf4j/slf4j-log4j12 "1.7.21"]
