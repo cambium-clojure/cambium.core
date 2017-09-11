@@ -4,3 +4,4 @@
 
 - Inherited code from cambium.core `0.9.0`
   - Old repo: https://github.com/kumarshantanu/cambium
+- Bump clojure/tools.logging dependency version to `0.4.0`

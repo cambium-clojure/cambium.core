@@ -6,15 +6,15 @@
   :min-lein-version "2.2.0"
   :pedantic? :abort
   :dependencies [[org.slf4j/slf4j-api       "1.7.25"]
-                 [org.clojure/tools.logging "0.3.1" :exclusions [org.clojure/clojure]]]
+                 [org.clojure/tools.logging "0.4.0" :exclusions [org.clojure/clojure]]]
   :global-vars {*warn-on-reflection* true}
   :profiles {:provided {:dependencies [[org.clojure/clojure "1.5.1"]]}
-             :codec-simple {:dependencies [[cambium/cambium.codec-simple "0.9.0"]]}
+             :codec-simple {:dependencies [[cambium/cambium.codec-simple "0.9.1"]]}
              :nested-test  {:test-paths ["nested-test"]}
              :dev {:dependencies [[org.clojure/tools.nrepl "0.2.12"]]}
              :logback {:dependencies [[ch.qos.logback/logback-classic "1.1.7"]
                                       [ch.qos.logback/logback-core    "1.1.7"]]}
-             :log4j12 {:dependencies [[org.slf4j/slf4j-log4j12 "1.7.21"]
+             :log4j12 {:dependencies [[org.slf4j/slf4j-log4j12 "1.7.25"]
                                       [log4j/log4j "1.2.17"]]}
              :log4j2  {:dependencies [[org.apache.logging.log4j/log4j-api  "2.6.2"]
                                       [org.apache.logging.log4j/log4j-core "2.6.2"]
