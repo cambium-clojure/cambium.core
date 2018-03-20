@@ -98,7 +98,8 @@
 
 (def ^:redef caller-meta-in-context?
   "Boolean (default true) - whether include caller form metadata in the logging context. May be disabled by setting
-  system property 'cambium.caller.meta.in.context' or by applying 'alter-var-root' before loading caller namespaces."
+  system property 'cambium.caller.meta.in.context' or by applying 'alter-var-root' (overrides the system property)
+  before loading caller namespaces."
   (if-let [^String cmic (System/getProperty "cambium.caller.meta.in.context")]
     (if (= "false" (.toLowerCase cmic))
       false
