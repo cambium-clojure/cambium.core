@@ -23,7 +23,7 @@ $ lein do clean, with-profile <clojure-version>,<slf4j-impl>[,<other-profile>..]
 Examples:
 ```shell
 $ lein do clean, with-profile c15,logback test
-$ lein do clean, with-profile c15,log4j2,nested-test test
+$ lein do clean, with-profile c17,log4j2 test
 ```
 
 Running tests across all supported Clojure versions:

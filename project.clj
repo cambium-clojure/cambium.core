@@ -10,7 +10,6 @@
   :global-vars {*warn-on-reflection* true}
   :profiles {:provided {:dependencies [[org.clojure/clojure "1.5.1"]]}
              :codec-simple {:dependencies [[cambium/cambium.codec-simple "0.9.1"]]}
-             :nested-test  {:test-paths ["nested-test"]}
              :dev {:dependencies [[org.clojure/tools.nrepl "0.2.12"]]}
              :logback {:dependencies [[ch.qos.logback/logback-classic "1.2.3"]
                                       [ch.qos.logback/logback-core    "1.2.3"]]}
