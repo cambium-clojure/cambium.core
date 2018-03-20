@@ -16,9 +16,9 @@
                                       [ch.qos.logback/logback-core    "1.2.3"]]}
              :log4j12 {:dependencies [[org.slf4j/slf4j-log4j12 "1.7.25"]
                                       [log4j/log4j "1.2.17"]]}
-             :log4j2  {:dependencies [[org.apache.logging.log4j/log4j-api  "2.11.0"]
-                                      [org.apache.logging.log4j/log4j-core "2.11.0"]
-                                      [org.apache.logging.log4j/log4j-slf4j-impl "2.11.0"]]}
+             :log4j2  {:dependencies [[org.apache.logging.log4j/log4j-api  "2.11.0" :exclusions [org.slf4j/slf4j-api]]
+                                      [org.apache.logging.log4j/log4j-core "2.11.0" :exclusions [org.slf4j/slf4j-api]]
+                                      [org.apache.logging.log4j/log4j-slf4j-impl "2.11.0" :exclusions [org.slf4j/slf4j-api]]]}
              :c15 {:dependencies [[org.clojure/clojure "1.5.1"]]}
              :c16 {:dependencies [[org.clojure/clojure "1.6.0"]]}
              :c17 {:dependencies [[org.clojure/clojure "1.7.0"]]
