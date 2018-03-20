@@ -18,9 +18,9 @@
 
 ## [WIP] 0.9.2 / 2018-March-??
 
-- [TODO] Put source line and column numbers into context automatically for every log event
+- Put source namespace, line and column numbers into context automatically for every log event
   - Discovered at compile time (unlike Java/Logback), so relatively quite inexpensive
-  - May be disabled by setting system property `cambium.caller.meta.in.context` to `false`
+  - May be disabled with system property `cambium.caller.meta.in.context` set to `false`
   - See also: https://medium.com/@hlship/macros-meta-and-logging-575d5047924c
 - Use cambium.codec-simple 0.9.2 for testing
   - [Todo] Use the GA version
