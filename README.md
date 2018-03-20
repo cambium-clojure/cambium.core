@@ -26,6 +26,13 @@ $ lein do clean, with-profile c15,logback test
 $ lein do clean, with-profile c15,log4j2,nested-test test
 ```
 
+Running tests across all supported Clojure versions:
+```shell
+$ lein do clean, test-all-logback
+$ lein do clean, test-all-log4j12
+$ lein do clean, test-all-log4j2
+```
+
 
 ## License
 

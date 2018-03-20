@@ -25,6 +25,9 @@
                    :global-vars  {*unchecked-math* :warn-on-boxed}}
              :c18 {:dependencies [[org.clojure/clojure "1.8.0"]]
                    :global-vars  {*unchecked-math* :warn-on-boxed}}
-             :c19 {:dependencies [[org.clojure/clojure "1.9.0-alpha20"]]
+             :c19 {:dependencies [[org.clojure/clojure "1.9.0"]]
                    :global-vars  {*unchecked-math* :warn-on-boxed}}
-             :dln {:jvm-opts ["-Dclojure.compiler.direct-linking=true"]}})
+             :dln {:jvm-opts ["-Dclojure.compiler.direct-linking=true"]}}
+  :aliases {"test-all-logback" ["with-profile" "logback,c15:logback,c16:logback,c17:logback,c18:logback,c19" "test"]
+            "test-all-log4j12" ["with-profile" "log4j12,c15:log4j12,c16:log4j12,c17:log4j12,c18:log4j12,c19" "test"]
+            "test-all-log4j2"  ["with-profile" "log4j2,c15:log4j2,c16:log4j2,c17:log4j2,c18:log4j2,c19" "test"]})
