@@ -22,8 +22,6 @@
   - Discovered at compile time (unlike Java/Logback), so relatively quite inexpensive
   - May be disabled with system property `cambium.caller.meta.in.context` set to `false`
   - See also: https://medium.com/@hlship/macros-meta-and-logging-575d5047924c
-- Use cambium.codec-simple 0.9.2 for testing
-  - [Todo] Use the GA version
 
 
 ## 0.9.1 / 2017-September-11
