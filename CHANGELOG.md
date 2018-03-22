@@ -16,11 +16,12 @@
   - Impl: Prefix->level map must be available before `deflevel` is eval'ed (compile time)
 
 
-## [WIP] 0.9.2 / 2018-March-??
+## 0.9.2 / 2018-March-22
 
 - Put source namespace, line and column numbers into context automatically for every log event
-  - Discovered at compile time (unlike Java/Logback), so relatively quite inexpensive
-  - May be disabled with system property `cambium.caller.meta.in.context` set to `false`
+  - Discovered at compile time (unlike Java/Logback), so quite inexpensive
+  - Disable with system property `cambium.caller.meta.in.context` set to `false`
+    - See also: `cambium.core/caller-meta-in-context?`
   - See also: https://medium.com/@hlship/macros-meta-and-logging-575d5047924c
 
 
