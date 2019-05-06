@@ -5,8 +5,8 @@
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :min-lein-version "2.2.0"
   :pedantic? :warn
-  :dependencies [[org.slf4j/slf4j-api       "1.7.25"]
-                 [org.clojure/tools.logging "0.4.0" :exclusions [org.clojure/clojure]]]
+  :dependencies [[org.slf4j/slf4j-api       "1.7.26"]
+                 [org.clojure/tools.logging "0.4.1" :exclusions [org.clojure/clojure]]]
   :global-vars {*assert* true
                 *warn-on-reflection* true
                 *unchecked-math* :warn-on-boxed}
