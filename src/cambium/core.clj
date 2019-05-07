@@ -109,26 +109,37 @@
 
 (defmacro log
   "Log an event or message under specified logger and log-level."
-  ([level msg]
-    (with-meta `(log (ctl-impl/get-logger ctl/*logger-factory* ~*ns*) ~level ~msg) (meta &form)))
+  ([level msg-or-throwable]
+   (with-meta `(log (ctl-impl/get-logger ctl/*logger-factory* ~*ns*) ~level ~msg-or-throwable) (meta &form)))
   ([level mdc throwable msg]
     (with-meta `(log (ctl-impl/get-logger ctl/*logger-factory* ~*ns*) ~level ~mdc ~throwable ~msg) (meta &form)))
-  ([logger level msg]
-    (with-meta `(when (ctl-impl/enabled? ~logger ~level)
-                  ~(if caller-meta-in-context?
-                     `(with-logging-context ~(assoc (meta &form) :ns (name (ns-name *ns*)))
-                        (ctl-impl/write! ~logger ~level nil ~msg))
-                     `(ctl-impl/write! ~logger ~level nil ~msg)))
-      (meta &form)))
-  ([logger level mdc throwable msg]
-    (i/expected i/mdc-literal? "context (MDC) map" mdc)
+  ([logger level msg-or-throwable]
+   (let [log-expr `(let [mot# ~msg-or-throwable]
+                     (if (instance? Throwable mot#)
+                       (ctl-impl/write! ~logger ~level mot# (.getMessage ^Throwable mot#))
+                       (ctl-impl/write! ~logger ~level nil mot#)))]
+     (with-meta `(when (ctl-impl/enabled? ~logger ~level)
+                   ~(if caller-meta-in-context?
+                      `(with-logging-context ~(assoc (meta &form) :ns (name (ns-name *ns*)))
+                         ~log-expr)
+                      `~log-expr))
+       (meta &form))))
+  ([logger level mdc-or-throwable throwable msg]
+    (i/expected i/mdc-literal? "context (MDC) map" mdc-or-throwable)
     (i/expected i/throwable-literal? "exception object" throwable)
-    (with-meta `(when (ctl-impl/enabled? ~logger ~level)
-                  (with-logging-context ~(if caller-meta-in-context?
-                                           `(conj ~(assoc (meta &form) :ns (name (ns-name *ns*))) ~mdc)
-                                           `~mdc)
-                    (ctl-impl/write! ~logger ~level ~throwable ~msg)))
-      (meta &form))))
+    (let [m-sym (gensym)
+          t-sym (gensym)]
+      (with-meta `(when (ctl-impl/enabled? ~logger ~level)
+                    (let [~m-sym ~mdc-or-throwable
+                          ~t-sym ~throwable]
+                      (if (and (nil? ~t-sym) (instance? Throwable ~m-sym))
+                        (with-logging-context ~(assoc (meta &form) :ns (name (ns-name *ns*)))
+                          (ctl-impl/write! ~logger ~level ~m-sym ~msg))
+                        (with-logging-context ~(if caller-meta-in-context?
+                                                 `(conj ~(assoc (meta &form) :ns (name (ns-name *ns*))) ~m-sym)
+                                                 `~m-sym)
+                          (ctl-impl/write! ~logger ~level ~t-sym ~msg)))))
+        (meta &form)))))
 
 
 (def level-keys
@@ -146,13 +157,13 @@
   (i/expected level-syms (str "a symbol for level name " level-syms) level-sym)
   (let [level-key (keyword level-sym)
         level-doc (str "Similar to clojure.tools.logging/" level-sym ".")
-        arglists  ''([msg] [mdc msg] [mdc throwable msg])]
+        arglists  ''([msg-or-throwable] [mdc-or-throwable msg] [mdc throwable msg])]
     `(defmacro ~level-sym
        ~level-doc
        {:arglists ~arglists}
-       ([msg#]                 (with-meta `(log ~~level-key ~msg#)                   ~'(meta &form)))
-       ([mdc# msg#]            (with-meta `(log ~~level-key ~mdc# nil ~msg#)         ~'(meta &form)))
-       ([mdc# throwable# msg#] (with-meta `(log ~~level-key ~mdc# ~throwable# ~msg#) ~'(meta &form))))))
+       ([msg-or-throwable#]      (with-meta `(log ~~level-key ~msg-or-throwable#)           ~'(meta &form)))
+       ([mdc-or-throwable# msg#] (with-meta `(log ~~level-key ~mdc-or-throwable# nil ~msg#) ~'(meta &form)))
+       ([mdc# throwable# msg#]   (with-meta `(log ~~level-key ~mdc# ~throwable# ~msg#)      ~'(meta &form))))))
 
 
 (deflevel trace)
@@ -177,13 +188,13 @@
     (i/expected level-keys (str "log-level keyword " level-keys) log-level)
     (i/expected level-keys (str "error-log-level keyword " level-keys) error-log-level)
     (let [docstring (str logger-name " logger.")
-          arglists  ''([msg] [mdc msg] [mdc throwable msg])]
+          arglists  ''([msg-or-throwable] [mdc-or-throwable msg] [mdc throwable msg])]
       `(defmacro ~logger-sym
          ~docstring
          {:arglists ~arglists}
-         ([msg#]                 (with-meta `(log (ctl-impl/get-logger ctl/*logger-factory* ~~logger-name)
-                                               ~~log-level ~msg#)                           ~'(meta &form)))
-         ([mdc# msg#]            (with-meta `(log (ctl-impl/get-logger ctl/*logger-factory* ~~logger-name)
-                                               ~~log-level ~mdc# nil ~msg#)                 ~'(meta &form)))
-         ([mdc# throwable# msg#] (with-meta `(log (ctl-impl/get-logger ctl/*logger-factory* ~~logger-name)
-                                               ~~error-log-level ~mdc# ~throwable# ~msg#)   ~'(meta &form)))))))
+         ([msg-or-throwable#]      (with-meta `(log (ctl-impl/get-logger ctl/*logger-factory* ~~logger-name)
+                                                 ~~log-level ~msg-or-throwable#)            ~'(meta &form)))
+         ([mdc-or-throwable# msg#] (with-meta `(log (ctl-impl/get-logger ctl/*logger-factory* ~~logger-name)
+                                                 ~~log-level ~mdc-or-throwable# nil ~msg#)  ~'(meta &form)))
+         ([mdc# throwable# msg#]   (with-meta `(log (ctl-impl/get-logger ctl/*logger-factory* ~~logger-name)
+                                                 ~~error-log-level ~mdc# ~throwable# ~msg#) ~'(meta &form)))))))

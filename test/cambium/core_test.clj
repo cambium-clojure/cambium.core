@@ -18,7 +18,9 @@
 (deftest log-test
   (testing "Normal scenarios"
     (c/info "hello")
+    (c/error (ex-info "sample-error 1" {:foo 10}))
     (c/info {:foo "bar" :baz 10 :qux true} "hello with context")
+    (c/error (ex-info "sample-error 2" {:foo 20}) "hello with exception")
     (c/with-logging-context {:extra "context" "data" [1 2 :three 'four]}
       (is (= (c/get-context) {"extra" "context" "data" "[1 2 :three four]"}))
       (is (= (c/context-val :extra) "context"))

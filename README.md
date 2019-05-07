@@ -5,7 +5,7 @@ Core module for the Cambium logging API.
 
 ## Clojars coordinates
 
-`[cambium/cambium.core "0.9.2"]`
+`[cambium/cambium.core "0.9.3"]`
 
 
 ## Documentation
@@ -22,8 +22,8 @@ $ lein do clean, with-profile <clojure-version>,<slf4j-impl>[,<other-profile>..]
 
 Examples:
 ```shell
-$ lein do clean, with-profile c15,logback test
-$ lein do clean, with-profile c17,log4j2 test
+$ lein do clean, with-profile c05,logback test
+$ lein do clean, with-profile c07,log4j2 test
 ```
 
 Running tests across all supported Clojure versions:
@@ -36,8 +36,7 @@ $ lein do clean, test-all-log4j2
 
 ## License
 
-Copyright © 2017-2018 Shantanu Kumar (kumar.shantanu@gmail.com, shantanu.kumar@concur.com)
+Copyright © 2017-2019 Shantanu Kumar
 
 Distributed under the Eclipse Public License either version 1.0 or (at
 your option) any later version.
-
