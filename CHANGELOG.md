@@ -21,7 +21,7 @@
 - Upgrade dependencies
   - clojure.tools.logging to version `0.4.1`
   - SLF4j to version `1.7.26`
-- [Todo] Overload log API arities `[msg-or-throwable] [mdc-or-throwable msg] [mdc throwable msg]`
+- Overload log API arities `[msg-or-throwable] [mdc-or-throwable msg] [mdc throwable msg]`
 
 
 ## 0.9.2 / 2018-March-22
