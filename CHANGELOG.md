@@ -16,7 +16,7 @@
   - Impl: Prefix->level map must be available before `deflevel` is eval'ed (compile time)
 
 
-## [WIP] 0.9.3 / 2019-May-??
+## 0.9.3 / 2019-May-07
 
 - Upgrade dependencies
   - clojure.tools.logging to version `0.4.1`

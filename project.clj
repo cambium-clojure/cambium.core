@@ -1,4 +1,4 @@
-(defproject cambium/cambium.core "0.9.3-SNAPSHOT"
+(defproject cambium/cambium.core "0.9.3"
   :description "Core module for the Cambium logging API"
   :url "https://github.com/cambium-clojure/cambium.core"
   :license {:name "Eclipse Public License"
@@ -11,7 +11,7 @@
                 *warn-on-reflection* true
                 *unchecked-math* :warn-on-boxed}
   :profiles {:provided {:dependencies [[org.clojure/clojure "1.5.1"]]}
-             :codec-simple {:dependencies [[cambium/cambium.codec-simple "0.9.2"]]}
+             :codec-simple {:dependencies [[cambium/cambium.codec-simple "0.9.3"]]}
              :logback {:dependencies [[ch.qos.logback/logback-classic "1.2.3"]
                                       [ch.qos.logback/logback-core    "1.2.3"]]}
              :log4j12 {:dependencies [[org.slf4j/slf4j-log4j12 "1.7.25"]
@@ -29,4 +29,3 @@
   :aliases {"test-all-logback" ["with-profile" "logback,c05:logback,c06:logback,c07:logback,c08:logback,c09:logback,c10" "test"]
             "test-all-log4j12" ["with-profile" "log4j12,c05:log4j12,c06:log4j12,c07:log4j12,c08:log4j12,c09:log4j12,c10" "test"]
             "test-all-log4j2"  ["with-profile" "log4j2,c05:log4j2,c06:log4j2,c07:log4j2,c08:log4j2,c09:log4j2,c10" "test"]})
-

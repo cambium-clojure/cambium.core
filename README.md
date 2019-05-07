@@ -5,7 +5,7 @@ Core module for the Cambium logging API.
 
 ## Clojars coordinates
 
-`[cambium/cambium.core "0.9.2"]`
+`[cambium/cambium.core "0.9.3"]`
 
 
 ## Documentation
@@ -36,7 +36,7 @@ $ lein do clean, test-all-log4j2
 
 ## License
 
-Copyright © 2017-2019 Shantanu Kumar (kumar.shantanu@gmail.com, shantanu.kumar@concur.com)
+Copyright © 2017-2019 Shantanu Kumar
 
 Distributed under the Eclipse Public License either version 1.0 or (at
 your option) any later version.
