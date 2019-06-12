@@ -24,7 +24,7 @@
              :c07 {:dependencies [[org.clojure/clojure "1.7.0"]]}
              :c08 {:dependencies [[org.clojure/clojure "1.8.0"]]}
              :c09 {:dependencies [[org.clojure/clojure "1.9.0"]]}
-             :c10 {:dependencies [[org.clojure/clojure "1.10.1-beta2"]]}
+             :c10 {:dependencies [[org.clojure/clojure "1.10.1"]]}
              :dln {:jvm-opts ["-Dclojure.compiler.direct-linking=true"]}}
   :aliases {"test-all-logback" ["with-profile" "logback,c05:logback,c06:logback,c07:logback,c08:logback,c09:logback,c10" "test"]
             "test-all-log4j12" ["with-profile" "log4j12,c05:log4j12,c06:log4j12,c07:log4j12,c08:log4j12,c09:log4j12,c10" "test"]
