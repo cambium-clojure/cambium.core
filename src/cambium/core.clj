@@ -14,10 +14,7 @@
     [cambium.codec              :as codec]
     [cambium.internal           :as i]
     [cambium.impl               :as impl]
-    [cambium.mdc                :as m])
-  (:import
-    [java.util HashMap Map$Entry]
-    [org.slf4j MDC]))
+    [cambium.mdc                :as m]))
 
 
 ;; ----- MDC handling -----
@@ -26,7 +23,7 @@
 (defn get-context
   "Return a copy of the current context containing string keys and original values."
   ^java.util.Map []
-  (let [cm (MDC/getCopyOfContextMap)
+  (let [cm (m/get-raw-mdc)
         ks (keys cm)]
     (zipmap ks (map #(codec/destringify-val (get cm %)) ks))))
 
