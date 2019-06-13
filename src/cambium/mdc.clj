@@ -9,13 +9,20 @@
 
 (ns cambium.mdc
   (:import
+    [java.util Map]
     [org.slf4j MDC]))
+
+
+(defn get-raw-mdc
+  "Return a raw copy of the current MDC."
+  ^Map []
+  (MDC/getCopyOfContextMap))
 
 
 (defmacro preserving-mdc
   "Execute body of code such that the MDC found at the start of execution is restored at the end of execution."
   [& body]
-  `(let [mdc# (MDC/getCopyOfContextMap)]
+  `(let [mdc# (get-raw-mdc)]
      (try
        ~@body
        (finally
@@ -43,7 +50,7 @@
   cambium.core/wrap-logging-context but replaces entire context at once instead of individual key/value pairs.
   See also: http://logback.qos.ch/manual/mdc.html"
   ([f]
-    (wrap-raw-mdc (MDC/getCopyOfContextMap) f))
+    (wrap-raw-mdc (get-raw-mdc) f))
   ([mdc f]
     (fn
       ([]

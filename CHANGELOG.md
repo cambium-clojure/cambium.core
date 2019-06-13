@@ -18,7 +18,7 @@
 
 ## [WIP] 0.9.4 / 2019-June-??
 
-- [Todo] Add function `cambium.mdc/get-raw-mdc`
+- Add function `cambium.mdc/get-raw-mdc`
 - Add `cambium.trace` namespace
   - Function middleware to extract and propagate trace info
   - Ring middleware for distributed tracing

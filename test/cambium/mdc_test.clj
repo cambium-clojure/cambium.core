@@ -22,10 +22,13 @@
                      "bar" "baz"}
         f (fn
             ([]
+              (is (= context-old (m/get-raw-mdc)))  ; raw MDC is same as context due to string K/V pairs
               (is (= "bar"  (c/context-val "foo")))
               (is (= "quux" (c/context-val "baz")))
               (is (nil? (c/context-val "bar"))))
             ([dummy arg]))]
+    (testing "get-raw-mdc"
+      (is (nil? (m/get-raw-mdc))))
     (testing "with-raw-mdc"
       (is (nil? (c/context-val "foo")) "Attribute not set must be absent before override")
       (m/with-raw-mdc nil
