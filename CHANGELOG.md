@@ -18,12 +18,11 @@
 
 ## [WIP] 0.9.4 / 2019-June-??
 
-- [Todo] Fix issue: Setting `nil` raw MDC throws NullPointerException
 - [Todo] Add function `cambium.mdc/get-raw-mdc`
-- [Todo] Add `cambium.util.http`
-  - [Todo] Ring middleware for distributed tracing
+- Add `cambium.trace` namespace
+  - Function middleware to extract and propagate trace info
+  - Ring middleware for distributed tracing
     - Plus request and response logging
-  - [Todo] Utility function for building distributed tracing headers
 
 
 ## 0.9.3 / 2019-May-07
