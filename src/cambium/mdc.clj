@@ -14,7 +14,7 @@
 
 
 (defn get-raw-mdc
-  "Return a raw copy of the current MDC."
+  "Return a raw copy of the current MDC. Empty MDC may be nil or empty map, subject to the underlying implementation."
   ^Map []
   (MDC/getCopyOfContextMap))
 

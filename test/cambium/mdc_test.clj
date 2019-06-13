@@ -28,7 +28,7 @@
               (is (nil? (c/context-val "bar"))))
             ([dummy arg]))]
     (testing "get-raw-mdc"
-      (is (nil? (m/get-raw-mdc))))
+      (is (empty? (m/get-raw-mdc))))
     (testing "with-raw-mdc"
       (is (nil? (c/context-val "foo")) "Attribute not set must be absent before override")
       (m/with-raw-mdc nil
