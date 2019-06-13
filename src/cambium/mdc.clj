@@ -15,7 +15,7 @@
 
 (defn get-raw-mdc
   "Return a raw copy of the current MDC. Empty MDC may be nil or empty map, subject to the underlying implementation."
-  ^Map []
+  ^java.util.Map []
   (MDC/getCopyOfContextMap))
 
 
