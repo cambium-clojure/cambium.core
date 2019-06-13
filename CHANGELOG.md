@@ -16,7 +16,7 @@
   - Impl: Prefix->level map must be available before `deflevel` is eval'ed (compile time)
 
 
-## [WIP] 0.9.4 / 2019-June-??
+## 1.0.0-beta1 / 2019-June-13
 
 - Add function `cambium.mdc/get-raw-mdc`
 - Add `cambium.trace` namespace
