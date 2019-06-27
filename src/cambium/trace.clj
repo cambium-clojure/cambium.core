@@ -27,6 +27,27 @@
 ;; ----- common utility functions -----
 
 
+(defn current-trace-info
+  "Return the current trace info as a TraceInfo record. Options:
+  | Key          | Description                                      |
+  |--------------|--------------------------------------------------|
+  |:trace-id-key |Key to find trace ID at from logging context      |
+  |:parent-id-key|Key to find parent span ID at from logging context|
+  |:span-id-key  |Key to find span ID at from logging context       |"
+  ([]
+    (current-trace-info {}))
+  ([{:keys [trace-id-key
+            parent-id-key
+            span-id-key]
+     :or {trace-id-key  default-trace-id-key
+          parent-id-key default-parent-id-key
+          span-id-key   default-span-id-key}}]
+    (->TraceInfo
+      (log/context-val trace-id-key)
+      (log/context-val parent-id-key)
+      (log/context-val span-id-key))))
+
+
 (defn make-trace-extractor
   "Given trace-ID and span-ID key paths in argument map, return a fn `(fn [m]) -> TraceInfo` that extracts trace info
   from map argument."
@@ -51,13 +72,11 @@
   ([trace-id-keypath span-id-keypath {:keys [trace-id-key
                                              span-id-key]
                                       :or {trace-id-key default-trace-id-key
-                                           span-id-key  default-span-id-key}}]
+                                           span-id-key  default-span-id-key}
+                                      :as options}]
     (fn trace-producer
       ([m]
-        (trace-producer m (->TraceInfo
-                            (log/context-val trace-id-key)
-                            nil
-                            (log/context-val span-id-key))))
+        (trace-producer m (current-trace-info options)))
       ([m ^TraceInfo trace-info]
         (let [trace-id (.-trace-id trace-info)
               span-id  (.-span-id trace-info)]
