@@ -163,12 +163,29 @@
              (when log-request?
                (log/info (select-keys request request-log-keys)
                  "request.received"))
-             (let [response (trace-producer (handler request) trace-info)]
+             (let [start-ns (System/nanoTime)
+                   find-dur (fn [] (-> (System/nanoTime)
+                                     (unchecked-subtract start-ns)
+                                     (/ 1000)
+                                     double))
+                   [response
+                    thrown
+                    dur-ms] (try
+                              (let [res (handler request)] [res nil (find-dur)])
+                              (catch Throwable ex          [nil ex  (find-dur)]))]
                (when log-response?
-                 (log/info (if (map? response)
-                             (select-keys response response-log-keys)
-                             {})
-                   "response.sent"))
-               response))))
+                 (if thrown
+                   (log/error {:duration-ms dur-ms} thrown "request.failed")
+                   (log/info (if (map? response)
+                               (-> response
+                                 (select-keys response-log-keys)
+                                 (assoc :duration-ms dur-ms))
+                               {:duration-ms dur-ms})
+                     "response.sent")))
+               (if thrown
+                 (throw thrown)
+                 (if (map? response)
+                   (trace-producer response trace-info)
+                   response))))))
        ([request respond raise]
          (respond (ring-trace request)))))))
