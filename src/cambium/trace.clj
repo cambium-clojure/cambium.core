@@ -166,7 +166,7 @@
              (let [start-ns (System/nanoTime)
                    find-dur (fn [] (-> (System/nanoTime)
                                      (unchecked-subtract start-ns)
-                                     (/ 1000)
+                                     (/ 1e6)  ; nanos to millis
                                      double))
                    [response
                     thrown
