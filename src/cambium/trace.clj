@@ -162,7 +162,7 @@
                                       span-id-key   (.-span-id   trace-info)}
              (when log-request?
                (log/info (select-keys request request-log-keys)
-                 "request.received"))
+                 "ring.request.received"))
              (let [start-ns (System/nanoTime)
                    find-dur (fn [] (-> (System/nanoTime)
                                      (unchecked-subtract start-ns)
@@ -175,13 +175,13 @@
                               (catch Throwable ex          [nil ex  (find-dur)]))]
                (when log-response?
                  (if thrown
-                   (log/error {:duration-ms dur-ms} thrown "request.failed")
+                   (log/info {:duration-ms dur-ms} thrown "ring.request.failed")
                    (log/info (if (map? response)
                                (-> response
                                  (select-keys response-log-keys)
                                  (assoc :duration-ms dur-ms))
                                {:duration-ms dur-ms})
-                     "response.sent")))
+                     "ring.response.sent")))
                (if thrown
                  (throw thrown)
                  (if (map? response)
