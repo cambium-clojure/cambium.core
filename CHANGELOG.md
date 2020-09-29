@@ -16,6 +16,13 @@
   - Impl: Prefix->level map must be available before `deflevel` is eval'ed (compile time)
 
 
+## [WIP] 1.0.0 / 2020-September-??
+
+- Drop support for Clojure `1.5.x`
+- Update tools.logging to version `1.1.0`
+- Update SLF4j to version `1.7.30`
+
+
 ## 1.0.0-rc1 / 2019-July-09
 
 - Add function `cambium.mdc/get-raw-mdc`
