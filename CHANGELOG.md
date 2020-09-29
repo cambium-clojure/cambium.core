@@ -16,7 +16,7 @@
   - Impl: Prefix->level map must be available before `deflevel` is eval'ed (compile time)
 
 
-## [WIP] 1.0.0 / 2020-September-??
+## 1.0.0 / 2020-September-29
 
 - Drop support for Clojure `1.5.x`
 - Update tools.logging to version `1.1.0`
