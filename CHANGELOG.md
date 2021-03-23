@@ -18,7 +18,8 @@
 
 ## [WIP] 1.1.0 / 2021-March-??
 
-- [Todo] Add mechanism to transform context attributes
+- Add function `cambium.core/transform-context` to transform context attributes
+  - Override with `alter-var-root`
   - Example use case: Redact sensitive attributes
 
 
