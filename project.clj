@@ -1,4 +1,4 @@
-(defproject cambium/cambium.core "1.1.0-alpha1"
+(defproject cambium/cambium.core "1.1.0-SNAPSHOT"
   :description "Core module for the Cambium logging API"
   :url "https://github.com/cambium-clojure/cambium.core"
   :license {:name "Eclipse Public License"
