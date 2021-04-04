@@ -18,7 +18,7 @@
 
 ## [WIP] 1.1.0 / 2021-April-??
 
-- [Todo] Add utility fn `cambium.codec.util/dissoc-in`
+- Add utility fn `cambium.codec.util/dissoc-in`
 
 
 ## 1.1.0-alpha1 / 2021-March-23
