@@ -28,6 +28,26 @@
     :otherwise              (.toString x)))
 
 
+(defn dissoc-in
+  "Dissociate specified key path from nested associative data structure, where
+  ks is a sequence of keys. Opposite of `clojure.core/assoc-in`."
+  ([data ks]
+   (if (seq ks)
+     (let [head (first ks)
+           tail (next ks)]
+       (if (nil? tail)
+         (dissoc data head)
+         (if (contains? data head)
+           ;; FIXME replace with `update` after Clojure 1.6 support is dropped
+           (assoc data head (dissoc-in (get data head) tail))
+           data)))
+     data))
+  ([data ks & more]
+   (->> more
+     (cons ks)
+     (reduce dissoc-in data))))
+
+
 ;; ----- Codec (default: EDN codec) helper -----
 
 

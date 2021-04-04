@@ -42,6 +42,12 @@
       (impl/flat-context-val repo stringify-key destringify-val k))))
 
 
+(defn ^:redef transform-context
+  "Transform context (map) before setting logging context. No-op by default - use `alter-var-root` to override."
+  [context]
+  context)
+
+
 (defn merge-logging-context!
   "Merge given context map into the current MDC using the following constraints:
   * Nil keys are ignored
@@ -50,13 +56,15 @@
   * Keys in the current context continue to have old values unless they are overridden by the specified context map
   * Nested keys are handled subject to `cambium.codec/nested-nav?`."
   ([context]
-    (if codec/nested-nav?
-      (impl/merge-nested-context! context)
-      (impl/merge-flat-context! context)))
+    (let [context (transform-context context)]
+      (if codec/nested-nav?
+        (impl/merge-nested-context! context)
+        (impl/merge-flat-context! context))))
   ([dest stringify-key stringify-val destringify-val context]
-    (if codec/nested-nav?
-      (impl/merge-nested-context! dest stringify-key stringify-val destringify-val context)
-      (impl/merge-flat-context! dest stringify-key stringify-val destringify-val context))))
+    (let [context (transform-context context)]
+      (if codec/nested-nav?
+        (impl/merge-nested-context! dest stringify-key stringify-val destringify-val context)
+        (impl/merge-flat-context! dest stringify-key stringify-val destringify-val context)))))
 
 
 (defmacro with-logging-context

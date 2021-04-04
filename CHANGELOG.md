@@ -16,6 +16,14 @@
   - Impl: Prefix->level map must be available before `deflevel` is eval'ed (compile time)
 
 
+## [WIP] 1.1.0 / 2021-April-??
+
+- Add utility fn `cambium.codec.util/dissoc-in`
+- Add function `cambium.core/transform-context` to transform context attributes
+  - Override with `alter-var-root`
+  - Example use case: Redact sensitive attributes
+
+
 ## 1.0.0 / 2020-September-29
 
 - Drop support for Clojure `1.5.x`
