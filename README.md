@@ -5,7 +5,7 @@ Core module for the Cambium logging API.
 
 ## Clojars coordinates
 
-`[cambium/cambium.core "1.1.0-alpha1"]`
+`[cambium/cambium.core "1.1.0"]`
 
 
 ## Documentation

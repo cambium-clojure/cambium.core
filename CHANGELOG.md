@@ -16,7 +16,7 @@
   - Impl: Prefix->level map must be available before `deflevel` is eval'ed (compile time)
 
 
-## [WIP] 1.1.0 / 2021-April-??
+## 1.1.0 / 2021-April-04
 
 - Add utility fn `cambium.codec.util/dissoc-in`
 - Add function `cambium.core/transform-context` to transform context attributes
