@@ -1,0 +1,26 @@
+name: Build and Test
+
+on:
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  setup-build-deploy:
+    name: Setup, Build, and Test
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v1
+
+    - name: Test logback
+      run: |-
+        lein do clean, test-all-logback
+
+    - name: Test log4j12
+      run: |-
+        lein do clean, test-all-logback
+
+    - name: Test log4j2
+      run: |-
+        lein do clean, test-all-log4j2
