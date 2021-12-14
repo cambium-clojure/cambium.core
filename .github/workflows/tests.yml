@@ -19,7 +19,7 @@ jobs:
 
     - name: Test log4j12
       run: |-
-        lein do clean, test-all-logback
+        lein do clean, test-all-log4j12
 
     - name: Test log4j2
       run: |-
