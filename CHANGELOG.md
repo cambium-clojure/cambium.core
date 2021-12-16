@@ -16,6 +16,13 @@
   - Impl: Prefix->level map must be available before `deflevel` is eval'ed (compile time)
 
 
+## 1.1.1 / 2021-December-16
+
+- Bump test dependencies to latest
+- Bump SLF4j version to 1.7.32 - fixes #7
+- Bump clojure/tools.logging to 1.2.2
+
+
 ## 1.1.0 / 2021-April-04
 
 - Add utility fn `cambium.codec.util/dissoc-in`
