@@ -12,8 +12,8 @@
                 *unchecked-math* :warn-on-boxed}
   :profiles {:provided {:dependencies [[org.clojure/clojure "1.6.0"]]}
              :codec-simple {:dependencies [[cambium/cambium.codec-simple "1.0.0"]]}
-             :logback {:dependencies [[ch.qos.logback/logback-classic "1.2.8"]
-                                      [ch.qos.logback/logback-core    "1.2.8"]]}
+             :logback {:dependencies [[ch.qos.logback/logback-classic "1.2.13"]
+                                      [ch.qos.logback/logback-core    "1.2.13"]]}
              :log4j12 {:dependencies [[org.slf4j/slf4j-log4j12 "1.7.30"]
                                       [log4j/log4j "1.2.17"]]}
              :log4j2  {:dependencies [[org.apache.logging.log4j/log4j-api  "2.16.0" :exclusions [org.slf4j/slf4j-api]]
